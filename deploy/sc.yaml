@@ -1,0 +1,8 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: efs
+provisioner: aws.k8s.logmein.com/efs-csi-pv-provisioner
+mountOptions:
+- tls
+- iam

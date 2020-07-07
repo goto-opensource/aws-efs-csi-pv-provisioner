@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aws-efs-csi-pv-provisioner
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aws-efs-csi-pv-provisioner
+  template:
+    metadata:
+      labels:
+        app: aws-efs-csi-pv-provisioner
+    spec:
+      serviceAccountName: aws-efs-csi-pv-provisioner
+      containers:
+      - name: aws-efs-csi-pv-provisioner
+        image: # put image here
+        args:
+        - -file-system-id=fs-12345678 # change FS ID here
+        volumeMounts:
+        - mountPath: /efs
+          name: efs
+      volumes:
+      - name: efs
+        persistentVolumeClaim:
+          claimName: aws-efs-csi-pv-provisioner-root
