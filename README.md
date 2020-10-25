@@ -57,7 +57,7 @@ spec:
   - tls
   - iam
   persistentVolumeReclaimPolicy: Delete
-  storageClassName: efs
+  storageClassName: efs-sc
   volumeMode: Filesystem
 status:
   phase: Bound
